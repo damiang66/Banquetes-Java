@@ -1,13 +1,13 @@
-package com.banquetes.banquetes;
+package com.damian.backen.usuarios.app.usuariosapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BanquetesApplication {
+public class UsuariosAppApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BanquetesApplication.class, args);
+		SpringApplication.run(UsuariosAppApplication.class, args);
 	}
 
 }

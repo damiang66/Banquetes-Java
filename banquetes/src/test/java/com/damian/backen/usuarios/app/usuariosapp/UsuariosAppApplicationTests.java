@@ -1,10 +1,10 @@
-package com.banquetes.banquetes;
+package com.damian.backen.usuarios.app.usuariosapp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BanquetesApplicationTests {
+class UsuariosAppApplicationTests {
 
 	@Test
 	void contextLoads() {
