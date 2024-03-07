@@ -29,6 +29,7 @@ import com.damian.backen.usuarios.app.usuariosapp.service.UsuarioService;
 
 import jakarta.validation.Valid;
 @CrossOrigin(originPatterns = "*")
+
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioControler {

@@ -25,9 +25,15 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String nombre;
+    private String apellido;
+    private String telefono;
+
     @NotBlank
     @Size(min = 4,max = 8)
     @Column(unique = true)
+
+
     private String username;
     @NotBlank
     private String password;
