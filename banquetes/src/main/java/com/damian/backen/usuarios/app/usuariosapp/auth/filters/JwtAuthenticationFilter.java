@@ -25,6 +25,8 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.w3c.dom.ls.LSOutput;
+
 import static com.damian.backen.usuarios.app.usuariosapp.auth.TokenConfig.*;
 
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
@@ -67,7 +69,13 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             Authentication authResult) throws IOException, ServletException {
         String username = ((User) authResult.getPrincipal()).getUsername();
         Collection<? extends GrantedAuthority> roles = authResult.getAuthorities();
-        boolean isAdmin = roles.stream().anyMatch(r-> r.getAuthority().equals("ROLE_ADMIN"));
+
+
+        boolean isAdmin = roles.stream().anyMatch(r-> (r.getAuthority().equals("ROLE_ADMIN"))
+
+
+        );
+      //  System.out.println(isAdmin); // verificar si admin no se si anda
         Claims claims = Jwts.claims();
         claims.put("authorities", new ObjectMapper().writeValueAsString(roles));
         claims.put("isAdmin", isAdmin);
@@ -94,7 +102,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
             AuthenticationException failed) throws IOException, ServletException {
-
+logger.info(failed.getLocalizedMessage());
         Map<String, Object> body = new HashMap<>();
 
         body.put("mensaje", "Error en la autenticacion username o password incorrectos");
