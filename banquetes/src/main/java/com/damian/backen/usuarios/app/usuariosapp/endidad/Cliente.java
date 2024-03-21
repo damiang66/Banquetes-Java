@@ -17,6 +17,7 @@ public class Cliente {
     @NotBlank
     private String apellido;
     @Email
+    @NotBlank
     private String email;
     @NotBlank
     private String telefono;

@@ -8,5 +8,6 @@ import com.damian.backen.usuarios.app.usuariosapp.endidad.Usuario;
 
 public interface UsuarioRepositorio extends JpaRepository<Usuario,Long> {
     public Optional<Usuario> findByUsername(String username);
-    
+    public Optional<Usuario> findByNombre(String nombre);
+
 }
