@@ -62,7 +62,7 @@ public class ProductoController {
             productoDb.setNombre(producto.getNombre());
             productoDb.setCantidad_minima(producto.getCantidad_minima());
             productoDb.setCategoria(producto.getCategoria());
-            return ResponseEntity.status(HttpStatus.CREATED).body(productoService.save(productoDb))
+            return ResponseEntity.status(HttpStatus.CREATED).body(productoService.save(productoDb));
         }
         return ResponseEntity.notFound().build();
     }

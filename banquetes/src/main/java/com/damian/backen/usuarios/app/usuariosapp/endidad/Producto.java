@@ -13,7 +13,7 @@ public class Producto {
     private Long id;
     @NotBlank
     private String nombre;
-    @OneToMany
+    @ManyToOne
     private Categoria categoria;
     private Integer cantidad;
     private Integer cantidad_minima;
