@@ -36,4 +36,9 @@ public class ProductoServiceImp implements ProductoService {
         productoRepositorio.deleteById(id);
 
     }
+
+    @Override
+    public List<Producto> findByNombreContainingIgnoreCase(String nombre) {
+        return productoRepositorio.findByNombreContainingIgnoreCase(nombre);
+    }
 }

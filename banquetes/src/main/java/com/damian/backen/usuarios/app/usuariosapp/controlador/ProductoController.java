@@ -2,6 +2,7 @@ package com.damian.backen.usuarios.app.usuariosapp.controlador;
 
 import com.damian.backen.usuarios.app.usuariosapp.endidad.Categoria;
 import com.damian.backen.usuarios.app.usuariosapp.endidad.Producto;
+import com.damian.backen.usuarios.app.usuariosapp.repositorio.CategoriaRepository;
 import com.damian.backen.usuarios.app.usuariosapp.service.ProductoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ import java.util.Optional;
 public class ProductoController {
     @Autowired
     ProductoService productoService;
+    @Autowired
+    CategoriaRepository categoriaRepository;
     private ResponseEntity<?>validar(BindingResult result){
         Map<String,Object> errores = new HashMap<>();
         result.getFieldErrors().forEach(e->{
@@ -41,6 +44,7 @@ public class ProductoController {
     }
     @PostMapping
     public ResponseEntity<?>save(@Valid @RequestBody Producto producto,BindingResult result){
+
         if(result.hasErrors()){
             return validar(result);
         }
@@ -65,5 +69,14 @@ public class ProductoController {
             return ResponseEntity.status(HttpStatus.CREATED).body(productoService.save(productoDb));
         }
         return ResponseEntity.notFound().build();
+    }
+    @GetMapping("/categoria")
+    public ResponseEntity<?>categorias(){
+        return ResponseEntity.ok(categoriaRepository.findAll());
+    }
+    @GetMapping("/buscar/{termino}")
+    public ResponseEntity<?>buscar(@PathVariable String termino){
+        System.out.println(termino);
+        return ResponseEntity.ok().body(productoService.findByNombreContainingIgnoreCase(termino));
     }
 }
